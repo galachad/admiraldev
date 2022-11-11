@@ -131,16 +131,35 @@ roxygen_clean_default <- function(path) {
                paste("#'   *Default*: ", "`", defaultval, "`", sep = "")
              )
     ) %>%
-    ungroup() %>%
-    filter(str_detect(tolower(lines), "default") & (lines != defaultstatement))
+    ungroup()
 
+  #If default documentation already exists
   recommended_fix <- final %>%
+    filter(str_detect(tolower(lines), "default") & (lines != defaultstatement)) %>%
     select(defaultstatement, line_number) %>%
     mutate(line_number = line_number + 0.01) %>%
     rename(lines = defaultstatement)
 
   file_content_new <- all_lines %>%
-    rbind(., recommended_fix) %>%
+    rbind(., recommended_fix)
+
+  #If no default documentation exists, but defaults exist
+  if(nrow(recommended_fix) == 0){
+
+    recommended_fix2 <- final %>%
+      filter(!is.na(defaultval)) %>%
+      group_by(fun, param) %>%
+      filter(line_number == max(line_number)) %>%
+      ungroup() %>%
+      select(defaultstatement, line_number) %>%
+      mutate(line_number = line_number + 0.02) %>%
+      rename(lines = defaultstatement)
+
+    file_content_new <- file_content_new  %>%
+      rbind(., recommended_fix2)
+  }
+
+  file_content_new <- file_content_new %>%
     arrange(line_number) %>%
     pull(lines)
 
