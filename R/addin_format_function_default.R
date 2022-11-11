@@ -19,14 +19,19 @@ roxygen_clean_default <- function(path) {
   function_arg_lines <- all_lines %>%
     filter(!str_detect(lines, "#'")) %>%
     filter(str_detect(lines, "<- function\\(") |
-           str_detect(lines, "\\) \\{") |
-           str_detect(lines, "<- function\\(.*\\) \\{")) %>%
+             str_detect(lines, "\\) \\{") |
+             str_detect(lines, "<- function\\(.*\\) \\{")) %>%
     mutate(fun = ifelse(str_detect(lines, " <- function\\("), str_split_fixed(lines, " <- function\\(", 2), NA)) %>%
     fill(fun) %>%
     mutate(headerfl = case_when(str_detect(lines, " <- function\\(") == TRUE ~ "open",
                                 str_detect(lines, "\\) \\{") == TRUE ~ "close"),
            oneline = ifelse(str_detect(lines, "<- function\\(.*\\) \\{"), "Y", NA)) %>%
-    pivot_wider(., names_from = headerfl, values_from = line_number)%>%
+    group_by(fun, headerfl) %>%
+    mutate(first = seq(1,n())) %>%
+    filter(first == 1) %>%
+    select(-first) %>%
+    ungroup() %>%
+    pivot_wider(., names_from = headerfl, values_from = line_number) %>%
     group_by(fun) %>%
     mutate(open = min(open, na.rm = TRUE),
            close = ifelse(is.na(oneline), min(close, na.rm = TRUE), open),
