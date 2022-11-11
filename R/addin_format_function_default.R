@@ -114,9 +114,11 @@ roxygen_clean_default <- function(path) {
     left_join(., roxygen_key, by = c("line_number")) %>%
     select(lines, line_number, fun, param, defaultval) %>%
     fill(fun) %>%
+    group_by(fun)%>%
     fill(param) %>%
-    fill(defaultval) %>%
+    ungroup() %>%
     group_by(fun, param) %>%
+    fill(defaultval) %>%
     mutate(defaultstatement =
              ifelse(
                is.na(defaultval),
