@@ -73,7 +73,7 @@ roxygen_clean_default <- function(path) {
 
   if("defaultval" %in% names(function_defaults)) {
     function_defaults <- function_defaults %>%
-    select(fun, param, defaultval)
+      select(fun, param, defaultval)
   }
 
 
@@ -115,7 +115,7 @@ roxygen_clean_default <- function(path) {
     pull(openclose)
 
   final <- all_lines %>%
-    filter(line_number %in% roxygen_chunk) %>%
+    #filter(line_number %in% roxygen_chunk) %>%
     left_join(., roxygen_key, by = c("line_number")) %>%
     select(lines, line_number, fun, param, defaultval) %>%
     fill(fun) %>%
@@ -135,16 +135,17 @@ roxygen_clean_default <- function(path) {
 
   #If default documentation already exists
   recommended_fix <- final %>%
-    filter(str_detect(tolower(lines), "default") & (lines != defaultstatement)) %>%
-    select(defaultstatement, line_number) %>%
-    mutate(line_number = line_number + 0.01) %>%
-    rename(lines = defaultstatement)
+    # filter(str_detect(tolower(lines), "default") & (lines != defaultstatement)) %>%
+    # select(defaultstatement, line_number) %>%
+    # mutate(line_number = line_number + 0.01) %>%
+    # rename(lines = defaultstatement) %>%
+    mutate(lines = ifelse(str_detect(lines, "Default:|\\*Default\\*:"), defaultstatement, lines)) %>%
+    select(lines, line_number)
 
-  file_content_new <- all_lines %>%
-    rbind(., recommended_fix)
+  file_content_new <- recommended_fix
 
   #If no default documentation exists, but defaults exist
-  if(nrow(recommended_fix) == 0){
+  if(!(TRUE %in% str_detect(final$lines, "Default:|\\*Default\\*:"))){
 
     recommended_fix2 <- final %>%
       filter(!is.na(defaultval)) %>%
