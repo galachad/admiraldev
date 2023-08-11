@@ -6,6 +6,11 @@ Utility Functions and Development Tools for the Admiral Package Family
 
 <!-- badges: start -->
 
+[![CRAN
+status](https://www.r-pkg.org/badges/version/admiraldev)](https://CRAN.R-project.org/package=admiraldev)
+[![Test
+Coverage](https://raw.githubusercontent.com/pharmaverse/admiraldev/badges/main/test-coverage.svg)](https://github.com/pharmaverse/admiraldev/actions/workflows/common.yml)
+
 <!-- badges: end -->
 
 ## Purpose
