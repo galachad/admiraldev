@@ -55,9 +55,6 @@
     <loc>https://pharmaverse.github.io/admiraldev/devel/main/reference/arg_name.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/admiraldev/devel/main/reference/as_name.html</loc>
-  </url>
-  <url>
     <loc>https://pharmaverse.github.io/admiraldev/devel/main/reference/assert_atomic_vector.html</loc>
   </url>
   <url>
@@ -77,6 +74,9 @@
   </url>
   <url>
     <loc>https://pharmaverse.github.io/admiraldev/devel/main/reference/assert_expr.html</loc>
+  </url>
+  <url>
+    <loc>https://pharmaverse.github.io/admiraldev/devel/main/reference/assert_expr_list.html</loc>
   </url>
   <url>
     <loc>https://pharmaverse.github.io/admiraldev/devel/main/reference/assert_filter_cond.html</loc>
@@ -101,6 +101,9 @@
   </url>
   <url>
     <loc>https://pharmaverse.github.io/admiraldev/devel/main/reference/assert_logical_scalar.html</loc>
+  </url>
+  <url>
+    <loc>https://pharmaverse.github.io/admiraldev/devel/main/reference/assert_named.html</loc>
   </url>
   <url>
     <loc>https://pharmaverse.github.io/admiraldev/devel/main/reference/assert_named_exprs.html</loc>
@@ -157,6 +160,9 @@
     <loc>https://pharmaverse.github.io/admiraldev/devel/main/reference/expect_dfs_equal.html</loc>
   </url>
   <url>
+    <loc>https://pharmaverse.github.io/admiraldev/devel/main/reference/expr_c.html</loc>
+  </url>
+  <url>
     <loc>https://pharmaverse.github.io/admiraldev/devel/main/reference/extract_vars.html</loc>
   </url>
   <url>
@@ -202,6 +208,9 @@
     <loc>https://pharmaverse.github.io/admiraldev/devel/main/reference/joins.html</loc>
   </url>
   <url>
+    <loc>https://pharmaverse.github.io/admiraldev/devel/main/reference/process_set_values_to.html</loc>
+  </url>
+  <url>
     <loc>https://pharmaverse.github.io/admiraldev/devel/main/reference/quo_c.html</loc>
   </url>
   <url>
@@ -209,6 +218,9 @@
   </url>
   <url>
     <loc>https://pharmaverse.github.io/admiraldev/devel/main/reference/remove_tmp_vars.html</loc>
+  </url>
+  <url>
+    <loc>https://pharmaverse.github.io/admiraldev/devel/main/reference/replace_symbol_in_expr.html</loc>
   </url>
   <url>
     <loc>https://pharmaverse.github.io/admiraldev/devel/main/reference/replace_symbol_in_quo.html</loc>
